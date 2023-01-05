@@ -4,7 +4,16 @@
     {
         static void Main(string[] args)
         {
-            Ruler ruler = new Ruler(10);
+            //{2023.01.05.  Add new feature user input / beta
+            string userinput = string.Empty;
+            Console.WriteLine("This program convert Cm to Inch");
+            Console.Write("Input Cm value : ");
+            userinput= Console.ReadLine();
+
+            int cmInput = 0;
+            int.TryParse(userinput, out cmInput);
+            Ruler ruler = new Ruler(cmInput);
+            //}2023.01.05.  Add new feature user input / beta
             ruler.Run();
         }
 
