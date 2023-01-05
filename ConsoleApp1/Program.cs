@@ -1,11 +1,9 @@
-﻿namespace ConsoleApp1
+namespace ConsoleApp1
 {
     //{2023.01.05 modify class
     
     internal class Program
     {
-<<<<<<< HEAD
-=======
         static void Main(string[] args)
         {
             //{2023.01.05.  Add new feature user input / beta
@@ -21,7 +19,6 @@
             ruler.Run();
         }
 
->>>>>>> origin/develop
         public class Ruler
         {
             private const float ONE_INCH = 2.54f;
@@ -42,11 +39,6 @@
         }
         //{2023.01.05 modify class
 
-        static void Main(string[] args)
-        {
-            Ruler ruler = new Ruler(10);
-            ruler.Run();
-        }
 
         
     }
