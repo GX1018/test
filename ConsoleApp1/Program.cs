@@ -1,10 +1,21 @@
-﻿namespace ConsoleApp1
+namespace ConsoleApp1
 {
+    //{2023.01.05 modify class
+    
     internal class Program
     {
         static void Main(string[] args)
         {
-            Ruler ruler = new Ruler(10);
+            //{2023.01.05.  Add new feature user input / beta
+            string userinput = string.Empty;
+            Console.WriteLine("This program convert Cm to Inch");
+            Console.Write("Input Cm value : ");
+            userinput= Console.ReadLine();
+
+            int cmInput = 0;
+            int.TryParse(userinput, out cmInput);
+            Ruler ruler = new Ruler(cmInput);
+            //}2023.01.05.  Add new feature user input / beta
             ruler.Run();
         }
 
@@ -20,7 +31,7 @@
             //{ 2023.01.05.     Add new feature SetInch func /gamma
                 private set { SetInch(value); }
             }
-            public Ruler(int cmvalue) { Centimeter=cmvalue; }
+            public Ruler(int cmvalue) { Centimeter = cmvalue; }
 
             public void Run()
             {
@@ -33,5 +44,9 @@
             }
             //} 2023.01.05.     Add new feature SetInch func /gamma
         }
+        //{2023.01.05 modify class
+
+
+        
     }
 }
