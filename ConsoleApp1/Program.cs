@@ -4,6 +4,24 @@
     
     internal class Program
     {
+<<<<<<< HEAD
+=======
+        static void Main(string[] args)
+        {
+            //{2023.01.05.  Add new feature user input / beta
+            string userinput = string.Empty;
+            Console.WriteLine("This program convert Cm to Inch");
+            Console.Write("Input Cm value : ");
+            userinput= Console.ReadLine();
+
+            int cmInput = 0;
+            int.TryParse(userinput, out cmInput);
+            Ruler ruler = new Ruler(cmInput);
+            //}2023.01.05.  Add new feature user input / beta
+            ruler.Run();
+        }
+
+>>>>>>> origin/develop
         public class Ruler
         {
             private const float ONE_INCH = 2.54f;
