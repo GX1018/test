@@ -17,7 +17,8 @@
             public float Inch
             {
                 get { return Centimeter * ONE_INCH; }
-                private set { Centimeter = (int)(value / ONE_INCH); }
+            //{ 2023.01.05.     Add new feature SetInch func /gamma
+                private set { SetInch(value); }
             }
             public Ruler(int cmvalue) { Centimeter=cmvalue; }
 
@@ -25,6 +26,12 @@
             {
                 Console.WriteLine($"{Centimeter}cm 는 {Inch}inch 입니다.");
             }
+
+            private void SetInch(float inchValue)
+            {
+                Centimeter = (int)(inchValue / ONE_INCH);
+            }
+            //} 2023.01.05.     Add new feature SetInch func /gamma
         }
     }
 }
