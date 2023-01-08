@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,31 @@ namespace Project_V_0._0._2
                 case "3":
                     BaseSetting.rogue = true;
                     break;
+            }
+        }
+        public void ConfirmedJobSelect(Player player)
+        {
+            
+            Console.WriteLine("선택하신 직업 : {0}", player.job);
+
+            Console.WriteLine();
+            
+            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.hp, player.mp, player.str, player.int_, player.dex);
+
+            Console.WriteLine("\n결정 하시겠습니까? [Y/N]");
+            string input = Console.ReadLine();
+
+            if (input == "Y"|| input == "y")
+            {
+                BaseSetting.loopCheck = false;
+            }
+            else if (input == "N"|| input == "n")
+            {
+                BaseSetting.fighter = false;
+                BaseSetting.mage = false;
+                BaseSetting.rogue = false;
+
+                player.JobStatusReset();
             }
         }
 

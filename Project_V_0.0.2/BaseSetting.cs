@@ -13,10 +13,14 @@ namespace Project_V_0._0._1
         public static bool fighter = false;
         public static bool mage = false;
         public static bool rogue = false;
+
+        public static bool loopCheck = true;
     }
 
     public class Status
     {
+        public string job;
+        
         public int lev;
         public int exp;
 
@@ -28,6 +32,22 @@ namespace Project_V_0._0._1
         public int dex;
 
         public int gold;
+    }
+
+    public class MonsterStatus
+    {
+        public string name;
+
+        public int exp;
+
+        public int hp;
+        public int mp;
+
+        public int attack;
+        public int mattack;
+        public int def;
+        public int mdef;
+
     }
 
 }

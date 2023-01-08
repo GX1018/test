@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Project_V_0._0._1;
+using System.Numerics;
 
 namespace Project_V_0._0._2
 {
@@ -10,13 +11,44 @@ namespace Project_V_0._0._2
             CharacterMaking characterMaking = new CharacterMaking();
             Player player= new Player();
 
+            Town1 town1 = new Town1();
+
             screen.Title();
-            characterMaking.Selectjob();
-            player.JobStatusApply();
+
+            while (BaseSetting.loopCheck)
+            {
+                characterMaking.Selectjob();
+                player.JobStatusApply();
+
+                Console.Clear();
+                characterMaking.ConfirmedJobSelect(player);
+            }
+            BaseSetting.loopCheck = true;
+
 
             Console.Clear();
-            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.hp, player.mp, player.str, player.int_, player.dex);
+            screen.GameStartScreen();
+            
+            Console.Clear();
+            screen.town1screen(town1);
 
+            while (BaseSetting.loopCheck)
+            {
+                town1.selectAction();
+                Console.Clear();
+                screen.town1screen(town1);
+            }
+            BaseSetting.loopCheck = true;
+
+            Console.Clear();
+
+            town1.GoNext();
+
+            screen.FirstField();
+
+
+
+            Console.ReadKey();
         }
     }
 }
