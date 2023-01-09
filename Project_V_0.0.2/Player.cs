@@ -18,18 +18,19 @@ namespace Project_V_0._0._2
             this.lev = 1;
             this.exp = 0;
 
-            this.hp = 50;
+            this.maxHp = 50;
+            this.currentHp = maxHp;
             this.mp = 20;
 
             this.str = 5;
             this.int_ = 5;
             this.dex = 5;
 
-            int attack = this.str + (int)0.5 * dex;
-            int mattack = this.int_;
+            this.attack = this.str + dex/2;
+            this.mattack = this.int_;
 
-            int def = (int)0.5 * this.str;
-            int m_def = this.int_;
+            this.def = this.str/2;
+            this.m_def = this.int_;
         }
 
         //public class Equipment
@@ -44,7 +45,7 @@ namespace Project_V_0._0._2
             {
                 this.job = "FIGHTER";
 
-                this.hp += 10;
+                this.maxHp += 10;
 
                 this.str += 2;
 
@@ -61,7 +62,7 @@ namespace Project_V_0._0._2
             {
                 this.job = "ROGUE";
 
-                this.hp += 5;
+                this.maxHp += 5;
                 this.mp += 5;
 
                 this.dex += 2;
@@ -74,12 +75,17 @@ namespace Project_V_0._0._2
             this.lev = 1;
             this.exp = 0;
 
-            this.hp = 50;
+            this.maxHp = 50;
             this.mp = 20;
 
             this.str = 5;
             this.int_ = 5;
             this.dex = 5;
+        }
+
+        public class Inventory
+        {
+            public List<string> inventory = new List<string>();//10칸
         }
     }
 }

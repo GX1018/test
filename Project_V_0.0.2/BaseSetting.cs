@@ -15,6 +15,13 @@ namespace Project_V_0._0._1
         public static bool rogue = false;
 
         public static bool loopCheck = true;
+        public static bool returnCheck = true;
+        public static int monster;
+
+        public static bool firstFieldEndCheck = false;
+
+        public static bool field1BossClear = false;
+
     }
 
     public class Status
@@ -24,7 +31,8 @@ namespace Project_V_0._0._1
         public int lev;
         public int exp;
 
-        public int hp;
+        public int maxHp;
+        public int currentHp;
         public int mp;
 
         public int str;
@@ -32,6 +40,12 @@ namespace Project_V_0._0._1
         public int dex;
 
         public int gold;
+
+        public int attack;
+        public int mattack;
+
+        public int def;
+        public int m_def;
     }
 
     public class MonsterStatus
@@ -43,11 +57,35 @@ namespace Project_V_0._0._1
         public int hp;
         public int mp;
 
+        public int dex;
+
         public int attack;
         public int mattack;
         public int def;
         public int mdef;
 
+        public string dropItem1;
+        public string dropItem2;
+        public string dropItem3;
+        public string dropItem4;
+
+
     }
 
+
+    //
+    public class SelectOption
+    {
+        public string inputNum = Console.ReadLine();
+
+        public void XX()
+        {
+            switch (inputNum)
+            {
+                case "1":
+                    break;
+            }
+        }
+    }
+    //
 }

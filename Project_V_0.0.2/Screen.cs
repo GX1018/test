@@ -37,6 +37,15 @@ namespace Project_V_0._0._2
             Console.ReadKey();//스킵기능 미구현
         }
 
+        public void enterTown1(Town1 town1)
+        {
+            Console.Clear();
+            Task.Delay(1000).Wait();
+            Console.WriteLine(town1.campName);
+            Task.Delay(1000).Wait();
+            Console.Clear();
+        }
+        
         public void town1screen(Town1 town1)
         {
             Console.WriteLine(town1.campName);
@@ -63,7 +72,24 @@ namespace Project_V_0._0._2
 
         public void FirstField()
         {
-            Console.WriteLine("[FirstFieldName]\n\n\n 1. {0}\n\n 2. {1}", firstField.Search, firstField.Return_) ;
+            Console.WriteLine("[FirstFieldName]\n\n\n 1. {0}\n\n 2. {1}\n\n 3. {2}\n\n 4. {3}", firstField.Search, firstField.NextCamp, firstField.Return_, firstField.UseItem) ;
+        }
+
+
+        public static void InBattle()
+        {
+            Console.WriteLine("IMAGE"/*이미지 출력*/);
+            Console.WriteLine("IMAGE"/*이미지 출력*/);
+            Console.WriteLine("IMAGE"/*이미지 출력*/);
+            Console.WriteLine("IMAGE"/*이미지 출력*/);
+        }
+        public static void InBattle_1()
+        { 
+            Console.WriteLine("1. ATTACK");
+            Console.WriteLine("2. SKILL");
+            Console.WriteLine("3. DEFENCE");
+            Console.WriteLine("4. ITEM");
+            Console.WriteLine("5. RUN");
         }
     }
 }

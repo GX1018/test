@@ -89,8 +89,16 @@ namespace Project_V_0._0._2
                     break;
             }
         }
+        public class Town2 : Town1
+        {
+            public Town2()
+            {
+                this.campName = "도시";
+            }
+        }
 
-        public void GoNext()
+
+            public void GoNext()
         {
             if (choice[0, 3] == "▶")
             {

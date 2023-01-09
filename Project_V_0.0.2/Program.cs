@@ -12,6 +12,9 @@ namespace Project_V_0._0._2
             Player player= new Player();
 
             Town1 town1 = new Town1();
+            Town1.Town2 town2 = new Town1.Town2();
+
+            FirstField firstField = new FirstField();
 
             screen.Title();
 
@@ -28,7 +31,10 @@ namespace Project_V_0._0._2
 
             Console.Clear();
             screen.GameStartScreen();
-            
+
+            returnTown://
+            screen.enterTown1(town1);
+            BaseSetting.returnCheck = true;
             Console.Clear();
             screen.town1screen(town1);
 
@@ -44,11 +50,48 @@ namespace Project_V_0._0._2
 
             town1.GoNext();
 
-            screen.FirstField();
+
+            fieldmain:
+
+
+            //보스 클리어 체크용//
+            BaseSetting.field1BossClear = true;
+            //보스 클리어 체크용//
+
+            firstField.selectAction();
+
+            if (BaseSetting.returnCheck == false)
+            {
+                goto returnTown;// 마을로 이동
+            }
+
+            if(BaseSetting.field1BossClear == false)
+            {
+                goto fieldmain;
+            }
+
+
+            returnTown2:
+            screen.enterTown1(town2);
+            BaseSetting.returnCheck = true;
+            Console.Clear();
+            screen.town1screen(town2);
+
+            while (BaseSetting.loopCheck)
+            {
+                town2.selectAction();
+                Console.Clear();
+                screen.town1screen(town2);
+            }
+            BaseSetting.loopCheck = true;
+
+            Console.Clear();
+
+            town2.GoNext();
 
 
 
-            Console.ReadKey();
+
         }
     }
 }

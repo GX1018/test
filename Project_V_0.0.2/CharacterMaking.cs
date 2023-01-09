@@ -41,7 +41,8 @@ namespace Project_V_0._0._2
 
             Console.WriteLine();
             
-            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.hp, player.mp, player.str, player.int_, player.dex);
+            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.maxHp, player.mp, player.str, player.int_, player.dex);
+            Console.WriteLine("attack {0}\ndef {1}", player.attack, player.def);
 
             Console.WriteLine("\n결정 하시겠습니까? [Y/N]");
             string input = Console.ReadLine();
