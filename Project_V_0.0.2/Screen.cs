@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Project_V_0._0._2.Player;
 
 namespace Project_V_0._0._2
 {
@@ -90,6 +91,18 @@ namespace Project_V_0._0._2
             Console.WriteLine("3. DEFENCE");
             Console.WriteLine("4. ITEM");
             Console.WriteLine("5. RUN");
+        }
+
+
+        public static void Inventory()
+        {
+            Inventory inventory = new Inventory();
+
+            for (int index = 0; index < inventory.itemName.Count; index++)
+            {
+                Console.WriteLine("{2}. {0}  X {1}", inventory.itemName[index],
+                    inventory.itemCount[index], index + 1);
+            }
         }
     }
 }

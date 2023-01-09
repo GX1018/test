@@ -48,7 +48,7 @@ namespace Project_V_0._0._1
         public int m_def;
     }
 
-    public class MonsterStatus
+    public class Monster
     {
         public string name;
 
@@ -65,10 +65,13 @@ namespace Project_V_0._0._1
         public int mdef;
 
         public string dropItem1;
+        public int haveDropItem1;
         public string dropItem2;
+        public int haveDropItem2;
         public string dropItem3;
+        public int haveDropItem3;
         public string dropItem4;
-
+        public int haveDropItem4;
 
     }
 

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,7 +49,6 @@ namespace Project_V_0._0._2
 
         Battle battle = new Battle();
         Player.Inventory inventory = new Player.Inventory();
-
 
         public void selectAction()
         {
@@ -107,17 +108,15 @@ namespace Project_V_0._0._2
                     BaseSetting.returnCheck = false;
                     break;
                 case "4":
-                    foreach (var item in inventory.inventory)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    Screen.Inventory();
+                    Console.ReadKey();
                     break;
-
+                default:
+                    goto loop;
             }
         }
 
-
-        class Monster1_Field1 : MonsterStatus
+        public class Monster1_Field1 : Monster
         {
             public Monster1_Field1()
             {
@@ -130,15 +129,19 @@ namespace Project_V_0._0._2
                 this.attack = 5;
 
                 this.dex = 0;
-                int cnt = 0;
-                this.dropItem1 = "슬라임의 체액"+cnt;       //5
+                this.haveDropItem1 = 1;
+                this.dropItem1 = "슬라임의 체액";       //5
+                this.haveDropItem2 = 1;
                 this.dropItem2 = "슬라임의 핵";        //2     //drop nothing 3
-
-                //7
             }
 
+                public int diceItem1 = 5;
+                public int diceItem2 = 3;
+
+            
+
         }
-        class Monster2_Field1 : MonsterStatus
+        class Monster2_Field1 : Monster
         {
             public Monster2_Field1()
             {
@@ -158,7 +161,7 @@ namespace Project_V_0._0._2
             }
         }
 
-        class MonsterBoss_Field1 : MonsterStatus
+        class MonsterBoss_Field1 : Monster
         {
             public MonsterBoss_Field1()
             {
@@ -252,10 +255,7 @@ namespace Project_V_0._0._2
                             player.def += player.def;
                             break;
                         case "4":
-                            foreach(var item in inventory.inventory)
-                            { 
-                                Console.WriteLine(item); 
-                            }
+                            Screen.Inventory();
                             Console.WriteLine("사용하실 아이템을 선택하세요[0~9]\n[10] : 돌아가기");
                             int inputUseItem = int.Parse(Console.ReadLine());
                             break;
@@ -290,53 +290,79 @@ namespace Project_V_0._0._2
 
                         Random random= new Random();
                         int dropItem = random.Next(10);
-                        if (dropItem < 5)
+                        if (dropItem < slime.diceItem1)
                         {
-                            if (inventory.inventory.Count < 10)
+                            Console.WriteLine("ITEM {0}를 획득했습니다", slime.dropItem1);
+                            Console.ReadKey();
+                            //
+                            itemGain:
+                            if (inventory.itemName.Count < 10)
                             {
-                                inventory.inventory.Add(slime.dropItem1);
-                                Console.WriteLine("ITEM {0}를 획득했습니다", slime.dropItem1);
-                                foreach (var item in inventory.inventory)
+                                if (inventory.itemName.IndexOf(slime.dropItem1) == -1)
                                 {
-                                    Console.WriteLine(item);
+                                    inventory.itemName.Add(slime.dropItem1);
+                                    slime.haveDropItem1 = 1;
+                                    inventory.itemCount.Add(slime.haveDropItem1);
                                 }
-                                Console.ReadKey();
-
+                                else if(!(inventory.itemName.IndexOf(slime.dropItem1) == -1))
+                                {
+                                    inventory.itemCount[inventory.itemName.IndexOf(slime.dropItem1)]+=1;
+                                    slime.haveDropItem1++;
+                                }
+                                else { }
                             }
                             else
                             {
-                                foreach(string index in inventory.inventory)
-                                {
-                                    Console.WriteLine(index);
-                                }
+                                Screen.Inventory();
                                 Console.WriteLine("버리실 아이템을 선택하세요");
                                 int itemNumber = int.Parse(Console.ReadLine());
-                                inventory.inventory[itemNumber] = slime.dropItem1;
+                                inventory.itemName.RemoveAt(itemNumber-1);
+                                inventory.itemCount.RemoveAt(itemNumber - 1);
+                                goto itemGain;
                             }
-                        }
-                        else if (8 <= dropItem) 
-                        {
+                            Screen.Inventory();
                             Console.ReadKey();
-                            /*do nothing*/
+                            //함수로 변환하기
+                        }
+                        else if (slime.diceItem1 <= dropItem&&dropItem < slime.diceItem1+slime.diceItem2) 
+                        {
+                            itemGain:
+                            if (inventory.itemName.Count < 10)
+                            {
+                                if (inventory.itemName.IndexOf(slime.dropItem2) == -1)
+                                {
+                                    inventory.itemName.Add(slime.dropItem2);
+                                    inventory.itemCount.Add(slime.haveDropItem2);
+                                    Console.WriteLine("ITEM {0}를 획득했습니다", slime.dropItem2);
+                                }
+                                else if (!(inventory.itemName.IndexOf(slime.dropItem2) == -1))
+                                {
+                                    inventory.itemCount[inventory.itemName.IndexOf(slime.dropItem2)] += 1;
+                                    slime.haveDropItem2++;
+                                }
+                                else { }
+
+                                for (int index = 0; index < inventory.itemName.Count; index++)
+                                {
+                                    Console.WriteLine("{2}. {0}  X {1}", inventory.itemName[index],
+                                        inventory.itemCount[index], index + 1);
+                                }
+
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Screen.Inventory();
+                                Console.WriteLine("버리실 아이템을 선택하세요");
+                                int itemNumber = int.Parse(Console.ReadLine());
+                                inventory.itemName.RemoveAt(itemNumber - 1);
+                                inventory.itemCount.RemoveAt(itemNumber - 1);
+                                goto itemGain;
+                            }
                         }
                         else
                         {
-                            if (inventory.inventory.Count < 10)
-                            {
-                                inventory.inventory.Add(slime.dropItem2);
-                                Console.WriteLine("ITEM {0}를 획득했습니다", slime.dropItem2);
                                 Console.ReadKey();
-                            }
-                            else
-                            {
-                                foreach (string index in inventory.inventory)
-                                {
-                                    Console.WriteLine(index);
-                                }
-                                Console.WriteLine("버리실 아이템을 선택하세요");
-                                int itemNumber = int.Parse(Console.ReadLine());
-                                inventory.inventory[itemNumber] = slime.dropItem2;
-                            }
                         }
 
 
@@ -375,6 +401,9 @@ namespace Project_V_0._0._2
                             player.def += player.def;
                             break;
                         case "4":
+                            Screen.Inventory();
+                            Console.WriteLine("사용하실 아이템을 선택하세요[0~9]\n[10] : 돌아가기");
+                            int inputUseItem = int.Parse(Console.ReadLine());
                             break;
                         case "5":
                             Random random = new Random();
@@ -440,6 +469,11 @@ namespace Project_V_0._0._2
                         case "3":
                             player.def += player.def;
                             break;
+                        case "4":
+                            Screen.Inventory();
+                            Console.WriteLine("사용하실 아이템을 선택하세요[0~9]\n[10] : 돌아가기");
+                            int inputUseItem = int.Parse(Console.ReadLine());
+                            break;
                         case "5":
                             Random random = new Random();
                             int escape = random.Next(0, player.dex + field1Boss.dex);
@@ -471,7 +505,6 @@ namespace Project_V_0._0._2
                         BaseSetting.field1BossClear = true;
                     }
 
-
                     if (inputNum == "3")
                     {
                         player.def = player.def / 2;
@@ -481,6 +514,17 @@ namespace Project_V_0._0._2
 
                 }
             }
+
+            public void ItemRoot(Monster1_Field1 slime)
+            {
+                Random random = new Random();
+                int dropItem = random.Next(10);
+                if (dropItem < slime.diceItem1)
+                {
+
+                }
+            }
+
         }
     }
 }

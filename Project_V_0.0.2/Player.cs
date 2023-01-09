@@ -85,7 +85,8 @@ namespace Project_V_0._0._2
 
         public class Inventory
         {
-            public List<string> inventory = new List<string>();//10칸
+            public List<string> itemName = new List<string>();//10칸
+            public List<int> itemCount = new List<int>(); 
         }
     }
 }
