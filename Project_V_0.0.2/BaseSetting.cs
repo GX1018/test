@@ -22,6 +22,8 @@ namespace Project_V_0._0._1
 
         public static bool field1BossClear = false;
 
+        public static bool correctInput = true;
+
     }
 
     public class Status

@@ -83,10 +83,12 @@ namespace Project_V_0._0._2
             this.dex = 5;
         }
 
-        public class Inventory
+        public class EquipItemSlot
         {
-            public List<string> itemName = new List<string>();//10칸
-            public List<int> itemCount = new List<int>(); 
+            public static string[] equipItemSlot = new string[5];
+
+            //입력//변수 < itemtype체크 ex>bool itemtypeHead = true;?// 
+
         }
     }
 }

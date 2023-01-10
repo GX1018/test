@@ -36,26 +36,20 @@ namespace Project_V_0._0._2
             screen.enterTown1(town1);
             BaseSetting.returnCheck = true;
             Console.Clear();
-            screen.town1screen(town1);
 
             while (BaseSetting.loopCheck)
             {
-                town1.selectAction();
+                town1.Town1Main();
                 Console.Clear();
-                screen.town1screen(town1);
             }
             BaseSetting.loopCheck = true;
 
-            Console.Clear();
-
-            town1.GoNext();
-
+            //town1.GoNext();
 
             fieldmain:
 
-
             //보스 클리어 체크용//
-            BaseSetting.field1BossClear = true;
+            BaseSetting.field1BossClear = false;
             //보스 클리어 체크용//
 
             firstField.selectAction();
@@ -79,7 +73,7 @@ namespace Project_V_0._0._2
 
             while (BaseSetting.loopCheck)
             {
-                town2.selectAction();
+                //town2.selectAction();
                 Console.Clear();
                 screen.town1screen(town2);
             }
