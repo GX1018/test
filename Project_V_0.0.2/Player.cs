@@ -83,11 +83,36 @@ namespace Project_V_0._0._2
             this.dex = 5;
         }
 
-        public class EquipItemSlot
+
+        public void EquipmentStatusApply()
+        {
+            EquipItem equipItem = new EquipItem();
+            
+            for (int index = 0; index < EquipItemSlot.equipItemSlot.Length; index++)
+            {
+                if (!(Player.EquipItemSlot.equipItemSlot[index] == null))
+                {
+                    this.attack += EquipItem.attack[EquipItem.name.IndexOf(Player.EquipItemSlot.equipItemSlot[index])];
+                    this.mattack += EquipItem.mattack[EquipItem.name.IndexOf(Player.EquipItemSlot.equipItemSlot[index])];
+                    this.def += EquipItem.def[EquipItem.name.IndexOf(Player.EquipItemSlot.equipItemSlot[index])];
+                    this.m_def += EquipItem.mdef[EquipItem.name.IndexOf(Player.EquipItemSlot.equipItemSlot[index])];
+                    this.dex += EquipItem.dex[EquipItem.name.IndexOf(Player.EquipItemSlot.equipItemSlot[index])];
+                }
+            }
+        }
+
+        
+
+        public static class EquipItemSlot
         {
             public static string[] equipItemSlot = new string[5];
 
-            //입력//변수 < itemtype체크 ex>bool itemtypeHead = true;?// 
+            
+
+            
+            //입력//변수 < itemtype체크 ex>bool itemtypeHead = true;?//
+            //입력값 == index0f
+
 
         }
     }

@@ -7,9 +7,28 @@ namespace Project_V_0._0._2
     {
         static void Main(string[] args)
         {
+            //test//
+            //EquipItem equipItem= new EquipItem();
+            //Inventory inventory= new Inventory();
+
+            //Console.WriteLine(EquipItem.name[0]);
+            //inventory.AddNewItem(EquipItem.name[0], 1);
+
+            //Console.WriteLine(Inventory.itemName[0]);
+
+            //int input =int.Parse(Console.ReadLine());
+            //Player.EquipItemSlot.equipItemSlot[input] = Inventory.itemName[input];
+
+            //Console.WriteLine("장착 슬롯 {0}", Player.EquipItemSlot.equipItemSlot[0]);
+            //test//
+
+
             Screen screen = new Screen();
             CharacterMaking characterMaking = new CharacterMaking();
-            Player player= new Player();
+            Player player = new Player();
+
+            Inventory inventory = new Inventory();//test
+            EquipItem equipItem = new EquipItem();//test
 
             Town1 town1 = new Town1();
             Town1.Town2 town2 = new Town1.Town2();
@@ -25,6 +44,11 @@ namespace Project_V_0._0._2
 
                 Console.Clear();
                 characterMaking.ConfirmedJobSelect(player);
+
+                //test
+                inventory.AddNewItem(EquipItem.name[0], 1);
+                inventory.AddNewItem("test1", 1);
+                //test
             }
             BaseSetting.loopCheck = true;
 
@@ -32,7 +56,7 @@ namespace Project_V_0._0._2
             Console.Clear();
             screen.GameStartScreen();
 
-            returnTown://
+        returnTown://
             screen.enterTown1(town1);
             BaseSetting.returnCheck = true;
             Console.Clear();
@@ -44,9 +68,9 @@ namespace Project_V_0._0._2
             }
             BaseSetting.loopCheck = true;
 
-            //town1.GoNext();
+        //town1.GoNext();
 
-            fieldmain:
+        fieldmain:
 
             //보스 클리어 체크용//
             BaseSetting.field1BossClear = false;
@@ -59,13 +83,13 @@ namespace Project_V_0._0._2
                 goto returnTown;// 마을로 이동
             }
 
-            if(BaseSetting.field1BossClear == false)
+            if (BaseSetting.field1BossClear == false)
             {
                 goto fieldmain;
             }
 
 
-            returnTown2:
+        returnTown2:
             screen.enterTown1(town2);
             BaseSetting.returnCheck = true;
             Console.Clear();
@@ -82,8 +106,6 @@ namespace Project_V_0._0._2
             Console.Clear();
 
             town2.GoNext();
-
-
 
 
         }

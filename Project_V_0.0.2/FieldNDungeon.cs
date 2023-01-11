@@ -121,6 +121,8 @@ namespace Project_V_0._0._2
             }
         }
 
+        Item Item = new Item();
+        EtcItem etcItem = new EtcItem();
         public class Monster1_Field1 : Monster
         {
             public Monster1_Field1()
@@ -135,15 +137,18 @@ namespace Project_V_0._0._2
 
                 this.dex = 0;
                 this.haveDropItem1 = 1;
-                this.dropItem1 = "슬라임의 체액";       //5
+                this.dropItem1 = "슬라임의 체액";       //5 EtcItem.etcItem[0]; //
+
+
                 this.haveDropItem2 = 1;
+                //this.dropItem2 = EtcItem.etcItem[1];        //2     //drop nothing 3
                 this.dropItem2 = "슬라임의 핵";        //2     //drop nothing 3
+
+
             }
 
                 public int diceItem1 = 5;
                 public int diceItem2 = 3;
-
-            
 
         }
         public class Monster2_Field1 : Monster

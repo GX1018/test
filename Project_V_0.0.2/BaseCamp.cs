@@ -46,10 +46,40 @@ namespace Project_V_0._0._2
             selectAction.InStore();
         }
 
+        Player player = new Player();
+        public void StatusInTown()
+        {
+            screen.StatusScreen(player);
+            Console.ReadLine();
+
+        }
+
+        public void EquipInTown()
+        {
+            screen.PlayerEquipScreen();
+            Console.ReadLine();
+
+        }
+
+
+        public void InventoryInTown()
+        {
+            screen.InventoryScreen();
+            selectAction.InventorySelect_1(this);
+        }
+
+        public void InventoryEquipInTown()
+        {
+            screen.CurrentEquipment();
+            screen.EquipItemScreen();
+            selectAction.EquipSelect();
+        }
+
         public void Town1Building()
         {
             screen.Town1building(this);
         }
+
 
 
         public void selectAction_()

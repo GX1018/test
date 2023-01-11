@@ -12,6 +12,8 @@ namespace Project_V_0._0._2
 
         public static List<int> itemCount= new List<int>();
 
+        
+
         public void AddNewItem(string item, int cnt)
         {
             itemName.Add(item);
@@ -22,5 +24,11 @@ namespace Project_V_0._0._2
         {
             itemCount[itemName.IndexOf(item)] += 1;
         }
+
+        //public void RemoveItem(string item)
+        //{
+        //    itemName.RemoveAt(itemName.IndexOf(item));
+        //    itemCount.RemoveAt(itemName.IndexOf(item));
+        //}
     }
 }

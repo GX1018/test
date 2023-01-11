@@ -77,8 +77,9 @@ namespace Project_V_0._0._2
             Console.WriteLine("3. 길드");
             Console.WriteLine("4. 필드");
             
-            Console.WriteLine("9. 스테이터스");
-            Console.WriteLine("0. 인벤토리");
+            Console.WriteLine("8. 스테이터스");//
+            Console.WriteLine("9. 장비");
+            Console.WriteLine("0. 인벤토리");       
             //
 
             //
@@ -91,6 +92,7 @@ namespace Project_V_0._0._2
             //    Console.WriteLine();
             //}
         }
+
 
         public static void GoToField()
         {
@@ -121,15 +123,71 @@ namespace Project_V_0._0._2
         }
         //Inventory inventory = new Inventory();
 
-        public  void InventoryScreen()
+        //기본 인벤토리 -> 입력 추가
+        public void InventoryScreen()
         {
 
             for (int index = 0; index < Inventory.itemName.Count; index++)
             {
-                Console.WriteLine("{2}. {0}  X {1}", Inventory.itemName[index],
-                    Inventory.itemCount[index], index + 1);
+                //Console.WriteLine("{2}. {0}  X {1}", Inventory.itemName[index],
+                //    Inventory.itemCount[index], index + 1);       수정전
+                Console.WriteLine(" {0}  X {1}", Inventory.itemName[index], Inventory.itemCount[index]);
+            }
+            Console.WriteLine("─────────────────────────────────");
+            Console.WriteLine("─────────────────────────────────");
+            Console.WriteLine(" 1 . 장비하기");
+            Console.WriteLine(" 2 . 아이템 사용");
+            Console.WriteLine(" 0 . 돌아가기");
+        }
+
+        public void CurrentEquipment()
+        {
+            Console.WriteLine("장착 중인 장비");
+            
+            for (int index = 0; index< Player.EquipItemSlot.equipItemSlot.Length; index++)
+            {
+                if (!(Player.EquipItemSlot.equipItemSlot[index] == null))
+                {
+                    Console.WriteLine(Player.EquipItemSlot.equipItemSlot[index]);
+                }
+                else if(Player.EquipItemSlot.equipItemSlot[index] == null)
+                {
+                    Console.WriteLine("NO ITEM");
+                }
             }
         }
+        
+        
+        public void EquipItemScreen()
+        {
+            Console.WriteLine(" 1 . 투구");
+            Console.WriteLine(" 2 . 갑옷");
+            Console.WriteLine(" 3 . 무기/방패");
+            Console.WriteLine(" 4 . 장신구");
+            Console.WriteLine(" 0. 돌아가기");
+        }
+
+        //
+        //EquipItemscreen
+        //
+        //
+
+        EquipItem equipItem = new EquipItem();
+        public void HaveEquipmet(int input)
+        {
+            Console.Clear();
+            Console.WriteLine("보유 중인 장비");
+
+            for (int index = 0; index < Inventory.itemName.Count; index++)
+            {
+                if (!(EquipItem.name.IndexOf(Inventory.itemName[index]) == -1) && EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[index])] == input-1)
+                {
+                    Console.WriteLine("{0}. {1}",index+1, Inventory.itemName[index]);
+                }
+            }
+        }
+
+
 
         public void Town1building(Town1 town1)
         {
@@ -161,6 +219,41 @@ namespace Project_V_0._0._2
             Console.WriteLine(" 1. 구입");
             Console.WriteLine(" 2. 판매");
             Console.WriteLine(" 3. 돌아간다");
+        }
+        public void PlayerEquipScreen()
+        {
+            Console.WriteLine(Player.EquipItemSlot.equipItemSlot[0]);
+            
+            //for(int index = 0; index < EquipItemSlot.equipItemSlot.Length; index++)
+            //{
+            //    Console.WriteLine("{0}. {1}", index+1, EquipItemSlot.equipItemSlot[index]);
+            //}
+        }
+
+
+        public void StatusScreen(Player player)
+        {
+            Console.WriteLine("[PLAYER STATUS]\n\n");
+            
+            Console.WriteLine($"JOB : {player.job}\n"); 
+            Console.WriteLine($"LEVEL : {player.lev}\n");
+            Console.WriteLine($"EXP : {player.exp}\n");
+
+            Console.WriteLine($"HP/MAX HP : {player.currentHp}/{player.maxHp}\n");
+            Console.WriteLine($"MP : {player.mp}\n");
+
+            Console.WriteLine($"STR : {player.str}\n");
+            Console.WriteLine($"INT : {player.int_}\n");
+            Console.WriteLine($"DEX : {player.dex}\n");
+
+
+            Console.WriteLine($"=====================\n");
+            Console.WriteLine($"ATT : {player.attack}\n");
+            Console.WriteLine($"M.ATT : {player.mattack}\n");
+            Console.WriteLine($"DEF : {player.def}\n");
+            Console.WriteLine($"M.DEF : {player.m_def}\n");
+
+
         }
 
     }
