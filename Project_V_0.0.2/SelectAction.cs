@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static Project_V_0._0._2.Town1;
@@ -145,12 +146,15 @@ namespace Project_V_0._0._2
 
 
         //이거를 equipselect case 안에////
+
+        //일단 helmet
         Inventory inventory= new Inventory();
-        public void InventorySelect(Player player)
+        public void InventorySelect(Player player, int input)
         {
-            int input = int.Parse(Console.ReadLine());
-            switch (input)
+            int inputIndex = int.Parse(Console.ReadLine());
+            switch (inputIndex)
             {
+                case 0:
                 case 1:
                 case 2:
                 case 3:
@@ -161,15 +165,17 @@ namespace Project_V_0._0._2
                 case 8:
                 case 9:
                 case 10:
-                    if (!(EquipItem.name.IndexOf(Inventory.itemName[input-1]) == -1) && 0<=EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[input-1])]
-                        && EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[input-1])] < 4)
+                    Player.EquipItemSlot.equipItemSlot[input-1] = Inventory.itemName[inputIndex];
+                    //
+                    if (!(EquipItem.name.IndexOf(Inventory.itemName[inputIndex -1]) == -1) && 0<=EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[inputIndex -1])]
+                        && EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[inputIndex -1])] < 4)
                     {
                         for(int index = 0; index < Player.EquipItemSlot.equipItemSlot.Length; index++)
                         {
 
-                            if(EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[input - 1])] == index)
+                            if(EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[inputIndex - 1])] == index)
                             {
-                                Player.EquipItemSlot.equipItemSlot[index] = Inventory.itemName[input - 1];
+                                Player.EquipItemSlot.equipItemSlot[input - 1] = Inventory.itemName[inputIndex - 1];
                                 //inventory.RemoveItem(Inventory.itemName[input - 1]);
                                 player.EquipmentStatusApply();//test
                             }

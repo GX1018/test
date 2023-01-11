@@ -178,11 +178,13 @@ namespace Project_V_0._0._2
             Console.Clear();
             Console.WriteLine("보유 중인 장비");
 
+            //인벤토리 index0~보유index 
             for (int index = 0; index < Inventory.itemName.Count; index++)
             {
                 if (!(EquipItem.name.IndexOf(Inventory.itemName[index]) == -1) && EquipItem.type[EquipItem.name.IndexOf(Inventory.itemName[index])] == input-1)
                 {
-                    Console.WriteLine("{0}. {1}",index+1, Inventory.itemName[index]);
+                    Console.WriteLine("{0}. {1}", index, Inventory.itemName[index]);
+                    // inventory itemName[index] >> 0번째 인덱스 -> 0. 아이템 네임// 8번째 인덱스 ->8. 아이템 네임/// 차후 출력되는 index 입력<<<
                 }
             }
         }
