@@ -51,7 +51,7 @@ namespace Project_V_0._0._2
             }
         }
 
-        public void SelectActionAtTown1Main(Town1 town1)
+        public void SelectActionAtTown1Main(Town1 town1, Player player, UseItem useItem)
         {
             string input = Console.ReadLine();
 
@@ -62,19 +62,24 @@ namespace Project_V_0._0._2
                     town1.InStore();
                     break;
                 case "2":
+                    Console.Clear();
+                    town1.InChurch(player);
                     break;
                 case "3":
+                    Console.Clear();
+                    town1.InGuild();
                     break;
                 case "4":
+                    BaseSetting.loopCheck = false;
                     break;
                 case "8":
-                    town1.StatusInTown();
+                    town1.StatusInTown(player);
                     break;
                 case "9":
                     town1.EquipInTown();
                     break;
                 case "0":
-                    town1.InventoryInTown();
+                    town1.InventoryInTown(player, useItem);
                     break;
                 default:
                     BaseSetting.correctInput = false;
@@ -188,7 +193,7 @@ namespace Project_V_0._0._2
         }
 
 
-        public void InventorySelect_1(Town1 town1)
+        public void InventorySelect_1(Town1 town1, Player player ,UseItem useItem)
         {
             int input = int.Parse(Console.ReadLine());
             switch (input)
@@ -197,10 +202,14 @@ namespace Project_V_0._0._2
                     Console.Clear();
                     town1.InventoryEquipInTown();
                     break;
+                case 2:
+                    Console.Clear();
+                    town1.InventoryUseItemInTown(useItem, player);
+                    break;
 
 
-                //case 2:
-                //case 3:
+                    //case 2:
+                    //case 3:
 
             }
         }
@@ -209,30 +218,128 @@ namespace Project_V_0._0._2
         {
             Screen screen = new Screen();
             int input = int.Parse(Console.ReadLine());
-            switch (input)
+
+
+            screen.HaveEquipmet(input);
+            EquipSelect_1(input);
+            Console.ReadLine();
+
+
+            //switch (input)
+            //{
+            //    case 1:// 1 =>helmet
+            //        screen.HaveEquipmet(input);
+            //        EquipSelect_1(input);
+            //        Console.ReadLine();
+            //        break;
+            //        //case 2:
+            //        //case 3:
+
+            //}
+        }
+
+        public void EquipSelect_1(int itemType)
+        {
+            int inventoryIndex = int.Parse(Console.ReadLine());
+            string temp;
+
+            if(Player.EquipItemSlot.equipItemSlot[itemType - 1] == null)
             {
-                case 1:
-                    screen.HaveEquipmet(1);
+                Player.EquipItemSlot.equipItemSlot[itemType - 1] = Inventory.itemName[inventoryIndex];
+                Inventory.itemName.RemoveAt(inventoryIndex);
+                Inventory.itemCount.RemoveAt(inventoryIndex);
 
-                    Console.ReadLine();
-                    break;
-                    //case 2:
-                    //case 3:
+                //장비 스테이터스 변동 적용
+            }
+            else
+            {
+                temp = Player.EquipItemSlot.equipItemSlot[itemType-1];
+                Player.EquipItemSlot.equipItemSlot[itemType-1] = Inventory.itemName[inventoryIndex];
+                Inventory.itemName[inventoryIndex] = temp;
+                //장비 스테이터스 변동 적용
 
+            }
+
+
+
+        }
+
+            public void UseItemSelect(UseItem useItem, Player player)
+        {
+            int input = int.Parse(Console.ReadLine());
+            if (input == 10)
+            {
+                BaseSetting.loopCheck = false;
+            }
+            else
+            {
+                useItem.ItemEffect(UseItem.name.IndexOf(Inventory.itemName[input]), player);
+                Inventory.itemCount[input]--;
+                if (Inventory.itemCount[input] == 0)
+                {
+                    Inventory.itemName.RemoveAt(input);
+                    Inventory.itemCount.RemoveAt(input);
+                }
             }
         }
 
-        
 
 
 
+            //
 
-        //
 
-
-        public void InStore()
+            public void InStore()
         {
             Console.ReadKey();
+        }
+
+        public void InChurch(Player player)
+        {
+            int input = int.Parse(Console.ReadLine());
+            switch (input)
+            {
+                case 1:
+                    Console.Clear();
+                    
+
+                    Console.WriteLine("***PRAY***");
+                    Console.WriteLine("체력이 모두 회복되었습니다.");
+                    player.currentHp = player.maxHp;
+
+                    Console.ReadKey();
+                    break;
+
+                case 2:
+
+                    break;
+
+                default:
+                    BaseSetting.correctInput = false;
+                    break;
+            }
+        }
+
+
+        public void InGuild()
+        {
+            int input = int.Parse(Console.ReadLine());
+            switch (input)
+            {
+                case 1:
+                    Console.Clear();
+
+                    Console.ReadKey();
+                    break;
+
+                case 2:
+
+                    break;
+
+                default:
+                    BaseSetting.correctInput = false;
+                    break;
+            }
         }
 
 

@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_V_0._0._2
+namespace test0112
 {
     internal class test1
     {
-        //public string[,] testArray = new string[10, 10];
-
         public void FirstFloor()
         {
             string[,] testArray = new string[10, 10];
@@ -34,14 +31,23 @@ namespace Project_V_0._0._2
                 }
             }
 
+            testArray[6, 1] = "■";
+
+            testArray[1, 2] = "◎";
+            testArray[2, 2] = "■";
+            testArray[3, 2] = "■";
+            testArray[4, 2] = "■";
+            testArray[6, 2] = "■";
+            testArray[7, 2] = "■";
+
+
+
             testArray[2, 9] = "▣";
             testArray[7, 0] = "▣";
 
 
 
-
-
-
+            PrintLavi(testArray);
         }
 
         public void PrintLavi(string[,] arrayName)
@@ -56,45 +62,5 @@ namespace Project_V_0._0._2
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ///selecAction에서 inventorySelcet//이거를 equipselect case 안에////
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_V_0._0._1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,9 +10,10 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace Project_V_0._0._2
 {
-    internal class Screen
+    public class Screen
     {
         //Town1 town1 = new Town1();
+
 
         public void Title()
         {
@@ -36,7 +38,7 @@ namespace Project_V_0._0._2
         {
             Console.WriteLine("선택하신 직업 : {0}", player.job);
             Console.WriteLine();
-            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.maxHp, player.mp, player.str, player.int_, player.dex);
+            Console.WriteLine("hp {0}\nmp {1}\nstr {2}\nint {3}\ndex {4}", player.maxHp, player.maxMp, player.str, player.int_, player.dex);
             Console.WriteLine("attack {0}\ndef {1}", player.attack, player.def);
             Console.WriteLine("\n결정 하시겠습니까? [Y/N]");
         }
@@ -72,25 +74,15 @@ namespace Project_V_0._0._2
             Console.WriteLine(town1.campName);
             Console.WriteLine();
             //
-            Console.WriteLine("1. 상점");
-            Console.WriteLine("2. 교회");
-            Console.WriteLine("3. 길드");
-            Console.WriteLine("4. 필드");
+            Console.WriteLine($"1. {town1.store}");
+            Console.WriteLine($"2. {town1.church}");
+            Console.WriteLine($"3. {town1.guild}");
+            Console.WriteLine($"4. {town1.goToNext}");
             
             Console.WriteLine("8. 스테이터스");//
             Console.WriteLine("9. 장비");
             Console.WriteLine("0. 인벤토리");       
-            //
-
-            //
-            //for (int y = 0; y < town1.choice.GetLength(1); y++)
-            //{
-            //    for (int x = 0; x < town1.choice.GetLength(0); x++)
-            //    {
-            //        Console.Write(town1.choice[x, y]);
-            //    }
-            //    Console.WriteLine();
-            //}
+            
         }
 
 
@@ -188,6 +180,23 @@ namespace Project_V_0._0._2
                 }
             }
         }
+        UseItem useItem = new UseItem();
+        public void HaveUseItem()
+        {
+            Console.WriteLine("보유 사용 아이템");
+
+            //인벤토리 index0~보유index 
+            for (int index = 0; index < Inventory.itemName.Count; index++)
+            {
+                if (!(UseItem.name.IndexOf(Inventory.itemName[index])==-1))
+                {
+                    Console.WriteLine("[{0}] {1} x{2}", index, Inventory.itemName[index], Inventory.itemCount[index]);
+                }
+            }
+        }
+
+
+
 
 
 
@@ -196,7 +205,7 @@ namespace Project_V_0._0._2
             if (town1.choice[0, 0] == "▶")
             {
                 Console.Clear();
-                StoreScreen(town1);
+                //StoreScreen(town1);
                 Console.ReadLine();
             }
             else if (town1.choice[0, 1] == "▶")
@@ -214,14 +223,31 @@ namespace Project_V_0._0._2
         }
 
 
-        public void StoreScreen(Town1 town1)
+        public void StoreScreen(Store store)
         {
-            Console.WriteLine("[ {0} ]", town1.store);
+            Console.WriteLine("[ {0} ]", store.name);
             Console.WriteLine();
-            Console.WriteLine(" 1. 구입");
-            Console.WriteLine(" 2. 판매");
-            Console.WriteLine(" 3. 돌아간다");
+            Console.WriteLine(" 1. {0}", store.buy);
+            Console.WriteLine(" 2. {0}", store.sell);
+            Console.WriteLine(" 3. {0}", store.return_town);
         }
+
+        public void ChurchScreen(Church church)
+        {
+            Console.WriteLine($"[ {church.name} ]");
+            Console.WriteLine();
+            Console.WriteLine($" 1. {church.pray}");
+            Console.WriteLine($" 2. {church.return_town}");
+        }
+        public void GuildScreen(Guild guild)
+        {
+            Console.WriteLine($"[ {guild.name} ]");
+            Console.WriteLine();
+            Console.WriteLine($" 1. {guild.questList}");
+            Console.WriteLine($" 2. {guild.return_town}");
+        }
+
+
         public void PlayerEquipScreen()
         {
             Console.WriteLine(Player.EquipItemSlot.equipItemSlot[0]);
@@ -232,17 +258,18 @@ namespace Project_V_0._0._2
             //}
         }
 
-
         public void StatusScreen(Player player)
         {
+            
             Console.WriteLine("[PLAYER STATUS]\n\n");
+
             
             Console.WriteLine($"JOB : {player.job}\n"); 
             Console.WriteLine($"LEVEL : {player.lev}\n");
             Console.WriteLine($"EXP : {player.exp}\n");
 
             Console.WriteLine($"HP/MAX HP : {player.currentHp}/{player.maxHp}\n");
-            Console.WriteLine($"MP : {player.mp}\n");
+            Console.WriteLine($"MP : {player.currentMp}/{player.maxMp}\n");
 
             Console.WriteLine($"STR : {player.str}\n");
             Console.WriteLine($"INT : {player.int_}\n");

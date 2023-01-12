@@ -26,6 +26,7 @@ namespace Project_V_0._0._2
             Screen screen = new Screen();
             CharacterMaking characterMaking = new CharacterMaking();
             Player player = new Player();
+            UseItem useItem = new UseItem();
 
             Inventory inventory = new Inventory();//test
             EquipItem equipItem = new EquipItem();//test
@@ -44,14 +45,20 @@ namespace Project_V_0._0._2
 
                 Console.Clear();
                 characterMaking.ConfirmedJobSelect(player);
-
-                //test
-                inventory.AddNewItem(EquipItem.name[0], 1);
-                inventory.AddNewItem("test1", 1);
-                //test
             }
             BaseSetting.loopCheck = true;
 
+
+            //test//
+            inventory.AddNewItem(EquipItem.name[0], 1);
+            inventory.AddNewItem(EquipItem.name[1], 1);
+            inventory.AddNewItem(EquipItem.name[2], 1);
+
+            inventory.AddNewItem(UseItem.name[0], 3);
+
+            player.currentHp = 1;
+            player.currentMp = 1;
+            //test//
 
             Console.Clear();
             screen.GameStartScreen();
@@ -63,7 +70,7 @@ namespace Project_V_0._0._2
 
             while (BaseSetting.loopCheck)
             {
-                town1.Town1Main();
+                town1.Town1Main(player, useItem);
                 Console.Clear();
             }
             BaseSetting.loopCheck = true;
@@ -76,6 +83,8 @@ namespace Project_V_0._0._2
             BaseSetting.field1BossClear = false;
             //보스 클리어 체크용//
 
+
+            Screen.GoToField();
             firstField.selectAction();
 
             if (BaseSetting.returnCheck == false)

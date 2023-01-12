@@ -115,7 +115,15 @@ namespace Project_V_0._0._2
                     Console.WriteLine("사용하실 아이템을 선택하세요[0~9]\n[10] : 돌아가기");
                     screen.InventoryScreen();
                     int inputUseItem = int.Parse(Console.ReadLine());
-                    goto loop;
+
+                    if (BaseSetting.returnCheck == false)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        goto loop;
+                    }
                 default:
                     goto loop;
             }

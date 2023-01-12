@@ -20,7 +20,8 @@ namespace Project_V_0._0._2
 
             this.maxHp = 50;
             this.currentHp = maxHp;
-            this.mp = 20;
+            this.maxMp = 20;
+            this.currentMp = maxMp;
 
             this.str = 5;
             this.int_ = 5;
@@ -33,11 +34,9 @@ namespace Project_V_0._0._2
             this.m_def = this.int_;
         }
 
-        //public class Equipment
-        //{
-        //    string[] equipment = new string[5];
+        
 
-        //}
+
 
         public void JobStatusApply()
         {
@@ -46,6 +45,7 @@ namespace Project_V_0._0._2
                 this.job = "FIGHTER";
 
                 this.maxHp += 10;
+                this.currentHp = this.maxHp;
 
                 this.str += 2;
 
@@ -54,7 +54,8 @@ namespace Project_V_0._0._2
             {
                 this.job = "MAGE";
 
-                this.mp += 10;
+                this.maxMp += 10;
+                this.currentMp = this.maxMp;
 
                 this.int_ += 2;
             }
@@ -63,7 +64,8 @@ namespace Project_V_0._0._2
                 this.job = "ROGUE";
 
                 this.maxHp += 5;
-                this.mp += 5;
+                this.maxMp += 5;
+                this.currentMp = this.maxMp;
 
                 this.dex += 2;
             }
@@ -76,12 +78,25 @@ namespace Project_V_0._0._2
             this.exp = 0;
 
             this.maxHp = 50;
-            this.mp = 20;
+            this.maxMp = 20;
 
             this.str = 5;
             this.int_ = 5;
             this.dex = 5;
         }
+
+
+        public void SaveStatusTemp()
+        {
+            int attack = this.attack;
+            int mattack = this.mattack ;
+            int def = this.def;
+            int m_def= this.m_def;
+            int dex = this.dex;
+        }
+
+
+
 
 
         public void EquipmentStatusApply()
@@ -108,12 +123,18 @@ namespace Project_V_0._0._2
             public static string[] equipItemSlot = new string[5];
 
             
-
-            
             //입력//변수 < itemtype체크 ex>bool itemtypeHead = true;?//
             //입력값 == index0f
-
-
         }
-    }
+
+
+        public class EquipedStatus : Player
+        {
+            public EquipedStatus()
+            {
+                this.attack = base.attack + EquipItem.attack[0] + EquipItem.attack[1] + EquipItem.attack[2] + EquipItem.attack[3] + EquipItem.attack[4];
+            }
+        }
+
+}
 }

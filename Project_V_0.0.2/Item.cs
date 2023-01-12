@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Project_V_0._0._1;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -100,7 +103,60 @@ namespace Project_V_0._0._2
 
         }
     }
-    
+
+
+    public class UseItem
+    {
+        public static List<string> name = new List<string>();
+        public static List<string> text = new List<string>();
+        public static List<int> value = new List<int>();
+        public static List<int> effect = new List<int>();
+        public UseItem()
+        {
+            name.Add("Hp 회복 물약");
+            text.Add("최대 HP의 25%를 회복한다.");
+            value.Add(20);
+            effect.Add(0);
+
+            name.Add("Mp 회복 물약");
+            text.Add("최대 MP의 50%를 회복한다.");
+            value.Add(30);
+            effect.Add(1);
+
+            name.Add("귀환의 깃털");
+            text.Add("마지막으로 방문한 마을로 돌아간다.");
+            value.Add(100);
+            effect.Add(9);
+        }
+
+
+        public void ItemEffect(int effect, Player player)
+        {
+            if(effect == 0)
+            {
+                player.currentHp += player.maxHp * 1 / 4;
+                if (player.currentHp > player.maxHp)
+                {
+                    player.currentHp = player.maxHp;
+                }
+            }
+
+            else if (effect == 1)
+            {
+                player.currentMp += player.maxMp * 1 / 2;
+                if (player.currentMp > player.maxMp)
+                {
+                    player.currentMp = player.maxMp;
+                }
+            }
+
+            else if (effect == 9)
+            {
+                BaseSetting.returnCheck = false;
+            }
+        }
+    }
+
 
 
 

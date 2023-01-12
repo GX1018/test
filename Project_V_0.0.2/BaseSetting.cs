@@ -35,7 +35,9 @@ namespace Project_V_0._0._1
 
         public int maxHp;
         public int currentHp;
-        public int mp;
+
+        public int maxMp;
+        public int currentMp;
 
         public int str;
         public int int_;
@@ -57,7 +59,6 @@ namespace Project_V_0._0._1
         public int exp;
 
         public int hp;
-        public int mp;
 
         public int dex;
 
